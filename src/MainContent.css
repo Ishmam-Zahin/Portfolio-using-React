@@ -1,8 +1,7 @@
 .main-container {
-  border: 1px solid red;
   width: calc(100% - 250px);
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 
   position: absolute;

@@ -2,6 +2,7 @@
   background-color: rgb(230, 230, 230);
   width: 250px;
   height: 100%;
+  overflow-y: auto;
 
   position: absolute;
   left: 0;
@@ -36,5 +37,41 @@
   height: fit-content;
   margin: auto;
 
-  font-size: 0.98rem;
+  font-size: 0.9rem;
+}
+.nav-container .links-container {
+  width: 100%;
+  height: fit-content;
+  list-style: none;
+}
+.nav-container .links-container li {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  margin-top: 15px;
+}
+.nav-container .links-container li button {
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  background: none;
+}
+.nav-container .links-container li .activated {
+  background-image: linear-gradient(
+    0deg,
+    rgb(0, 238, 0) 60%,
+    rgb(123, 255, 123) 40%
+  );
+  border: none;
+}
+.nav-container .foot-container {
+  width: 100%;
+  height: fit-content;
+  margin-top: 30px;
+  margin-bottom: 10px;
+
+  text-align: center;
 }

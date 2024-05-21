@@ -1,4 +1,8 @@
 import "./MainContent.css";
-export default function MainContent() {
-  return <div className="main-container">main</div>;
+import Home from "./Home.js";
+
+export default function MainContent({ currentActiveTab }) {
+  return (
+    <div className="main-container">{currentActiveTab === 1 && <Home />}</div>
+  );
 }
