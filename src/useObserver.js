@@ -1,17 +1,20 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
-export function useObserver(root, threshold) {
-  const element = useRef(null);
+export function useObserver(root, threshold, noOfelements, onIntersect) {
   const observer = useRef(null);
-  const [isIntersected, setIsIntersected] = useState(false);
+  const elements = useRef(new Array(noOfelements));
 
   useEffect(
     function () {
+      console.log("xxx");
       observer.current = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            setIsIntersected(true);
-            observer.current.unobserve(element.current);
+            if (entry.isIntersecting) {
+              console.log(observer);
+              observer.current.unobserve(entry.target);
+              onIntersect(entry.target);
+            }
           });
         },
         {
@@ -20,10 +23,10 @@ export function useObserver(root, threshold) {
         }
       );
 
-      observer.current.observe(element.current);
+      elements.current.forEach((el) => observer.current.observe(el));
     },
-    [root, threshold]
+    [root, threshold, onIntersect]
   );
 
-  return [element, isIntersected];
+  return [elements];
 }
