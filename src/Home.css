@@ -1,44 +1,51 @@
 .home-container {
   width: 100%;
-  height: fit-content;
+  height: 100vh;
+  position: relative;
 }
 .home-container .section-container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
+  position: absolute;
 
-  transition: opacity 1s;
+  transition: opacity 2s;
 }
 .home-container .section-container div {
   width: fit-content;
   height: fit-content;
   position: absolute;
+  color: white;
 
   left: 15%;
   top: 50%;
 
-  transition: top 1s, opacity 1s;
+  transition: top 500ms, opacity 500ms;
 }
 .home-container .section-container div textarea {
   border: none;
   background: none;
   resize: none;
   height: 100px;
-  width: 500px;
+  width: 550px;
   font-size: 2rem;
+  color: white;
 }
 .home-container .section-container button {
   width: 150px;
   height: 50px;
   position: absolute;
   margin-top: 200px;
+  border: 1px solid black;
+  background: none;
+  border-color: white;
+  color: white;
 
   left: 15%;
   top: 50%;
 
-  transition: top 1s, opacity 1s;
+  transition: top 500ms, opacity 500ms;
   transition-delay: 200ms;
 }
 
