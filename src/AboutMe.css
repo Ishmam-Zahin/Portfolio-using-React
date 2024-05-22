@@ -1,0 +1,25 @@
+.aboutme-container {
+  width: 100%;
+  height: fit-content;
+}
+.aboutme-container .detail-container {
+  border: 1px solid blue;
+  margin-top: 150px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  transition: transform 1s, opacity 1s;
+}
+.aboutme-container .detail-container p:first-child {
+  color: rgb(157, 157, 157);
+  font-size: 0.8rem;
+  letter-spacing: 5px;
+  font-family: "Courier New", Courier, monospace, serif;
+}
+.aboutme-container .detail-container h2 {
+  margin-top: 20px;
+}
+.aboutme-container .detail-container .para {
+  margin-top: 20px;
+  text-align: left;
+}
