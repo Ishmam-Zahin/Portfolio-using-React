@@ -12,22 +12,22 @@ export default function NavBar({ onPress, currentActiveTab }) {
           About Me
         </Link>
         <Link id={3} onPress={onPress} currentActiveTab={currentActiveTab}>
-          Skills
+          Services
         </Link>
         <Link id={4} onPress={onPress} currentActiveTab={currentActiveTab}>
-          Projects
-        </Link>
-        <Link id={5} onPress={onPress} currentActiveTab={currentActiveTab}>
-          Home
-        </Link>
-        <Link id={6} onPress={onPress} currentActiveTab={currentActiveTab}>
-          About Me
-        </Link>
-        <Link id={7} onPress={onPress} currentActiveTab={currentActiveTab}>
           Skills
         </Link>
-        <Link id={8} onPress={onPress} currentActiveTab={currentActiveTab}>
+        <Link id={5} onPress={onPress} currentActiveTab={currentActiveTab}>
+          Education
+        </Link>
+        <Link id={6} onPress={onPress} currentActiveTab={currentActiveTab}>
+          Experience
+        </Link>
+        <Link id={7} onPress={onPress} currentActiveTab={currentActiveTab}>
           Projects
+        </Link>
+        <Link id={8} onPress={onPress} currentActiveTab={currentActiveTab}>
+          Contact
         </Link>
       </Links>
       <Footer>

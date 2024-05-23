@@ -6,6 +6,8 @@
   margin-top: 150px;
   padding-left: 30px;
   padding-right: 30px;
+  transform: translate(-100px, 0);
+  opacity: 0;
 
   transition: transform 1s, opacity 1s;
 }
@@ -21,26 +23,109 @@
 .aboutme-container .detail-container .para {
   margin-top: 20px;
   text-align: left;
+  font-size: 1.05rem;
 }
 .aboutme-container .box-container {
   padding-left: 30px;
   padding-right: 30px;
-  margin-top: 30px;
   margin-bottom: 30px;
   width: 100%;
-  height: 400px;
+  height: 450px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
 }
 .aboutme-container .box-container .box {
   width: 20%;
   height: 150px;
   box-shadow: 0 0 30px rgb(222, 222, 222);
+  opacity: 0;
+  margin: 10px;
+}
+.aboutme-container .box-container .box p {
+  padding-left: 20px;
+}
+.aboutme-container .box-container .box .p-second {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+.aboutme-container .box-container .box-0 {
+  border-bottom: 5px solid silver;
+  transform: translate(-90px, 0);
+  transition: transform 1s, opacity 1s;
+}
+.aboutme-container .box-container .box-1 {
+  border-bottom: 5px solid rgb(82, 82, 255);
+  transform: translate(0, 90px);
+  transition: transform 1s, opacity 1s;
+  transition-delay: 100ms;
+}
+.aboutme-container .box-container .box-2 {
+  border-bottom: 5px solid #48752c;
+  transform: translate(0, 90px);
+  transition: transform 1s, opacity 1s;
+  transition-delay: 200ms;
+}
+.aboutme-container .box-container .box-3 {
+  border-bottom: 5px solid rgb(139, 177, 0);
+  transform: translate(90px, 0);
+  transition: transform 1s, opacity 1s;
+  transition-delay: 300ms;
+}
+.aboutme-container .box-container .box-3 p:first-child {
+  padding-left: 0;
+}
+.aboutme-container .box-container .box-3 .p-second {
+  margin-top: 0;
+}
+.aboutme-container .box-container .box-4 {
+  border-bottom: 5px solid #434343;
+  transform: translate(-90px, 0);
+  transition: transform 1s, opacity 1s;
+}
+.aboutme-container .box-container .box-5 {
+  border-bottom: 5px solid #da954b;
+  transform: translate(0, -90px);
+  transition: transform 1s, opacity 1s;
+  transition-delay: 100ms;
+}
+.aboutme-container .box-container .box-6 {
+  border-bottom: 5px solid #46152f;
+  transform: translate(0, -90px);
+  transition: transform 1s, opacity 1s;
+  transition-delay: 200ms;
+}
+.aboutme-container .box-container .box-7 {
+  border-bottom: 5px solid #8b7dbe;
+  transform: translate(90px, 0);
+  transition: transform 1s, opacity 1s;
+  transition-delay: 300ms;
+}
+.aboutme-container .final-container {
+  background-color: #ffba70;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  margin-left: 30px;
+  margin-bottom: 50px;
+  width: 80%;
+  height: fit-content;
 
-  transform: translate(0, 50px);
+  transform: translate(-100px, 0);
   opacity: 0;
 
   transition: transform 1s, opacity 1s;
+}
+.aboutme-container .final-container p:first-child {
+  font-size: 2rem;
+  margin-top: 50px;
+}
+.aboutme-container .final-container button {
+  margin-top: 50px;
+  width: 150px;
+  height: 50px;
+  margin-bottom: 50px;
+  background: none;
+  border: 1px solid black;
 }

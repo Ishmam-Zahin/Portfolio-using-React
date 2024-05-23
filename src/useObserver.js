@@ -1,11 +1,16 @@
 import { useRef, useEffect } from "react";
 
-export function useObserver(root, threshold, elements, onIntersect) {
+export function useObserver(
+  root,
+  threshold,
+  rootMargin,
+  elements,
+  onIntersect
+) {
   const observer = useRef(null);
 
   useEffect(
     function () {
-      console.log("i am in observer useEffect");
       observer.current = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -17,12 +22,13 @@ export function useObserver(root, threshold, elements, onIntersect) {
         },
         {
           root: root,
+          rootMargin: rootMargin,
           threshold: threshold,
         }
       );
 
-      elements.current.forEach((el) => observer.current.observe(el));
+      elements.forEach((el) => observer.current.observe(el.current));
     },
-    [root, threshold, elements, onIntersect]
+    [root, threshold, rootMargin, elements, onIntersect]
   );
 }
