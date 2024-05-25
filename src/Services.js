@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "./Services.css";
 import { useCallback } from "react";
 import { useObserver } from "./useObserver";
@@ -18,6 +18,7 @@ export default function Services() {
     <div className="services-container">
       <Intro element={element} />
       <Expertises />
+      <Records />
     </div>
   );
 }
@@ -190,6 +191,46 @@ function Expertise({ id, element, children }) {
       ref={(el) => (element.current = el)}
     >
       {children}
+    </div>
+  );
+}
+
+function Records() {
+  const [start, setStart] = useState(false);
+  const [value1] = useAutoCounter(300, 10, 100, start);
+  const [value2] = useAutoCounter(200, 15, 100, start);
+  const [value3] = useAutoCounter(100, 40, 100, start);
+  const [value4] = useAutoCounter(50, 100, 100, start);
+  const element = useRef(null);
+
+  const handleIntersect = useCallback(function (element) {
+    setStart(true);
+  }, []);
+
+  useObserver(null, 0.5, "0px", [element], handleIntersect);
+
+  return (
+    <div className="record-container" ref={(el) => (element.current = el)}>
+      <p>
+        {value1}
+        <br />
+        <span>Cup of Coffe</span>
+      </p>
+      <p>
+        {value2}
+        <br />
+        <span>Projects</span>
+      </p>
+      <p>
+        {value3}
+        <br />
+        <span>Clients</span>
+      </p>
+      <p>
+        {value4}
+        <br />
+        <span>Partners</span>
+      </p>
     </div>
   );
 }
