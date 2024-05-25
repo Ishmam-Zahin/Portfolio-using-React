@@ -5,30 +5,32 @@ import { useObserver } from "./useObserver";
 import { useAutoCounter } from "./useAutoCounter";
 
 export default function Services() {
-  const element0 = useRef(null);
-  const element1 = useRef(null);
+  const element = useRef(null);
 
   const handleIntersect = useCallback(function (element) {
     element.style.transform = `translate(0, 0)`;
     element.style.opacity = `1`;
   }, []);
 
-  useObserver(null, 0.1, "0px", [element0, element1], handleIntersect);
-
-  // const [value] = useAutoCounter(10, 1000, 1000);
+  useObserver(null, 0.1, "0px", [element], handleIntersect);
 
   return (
     <div className="services-container">
-      <p className="heading" ref={(el) => (element0.current = el)}>
-        WHAT I DO?
-      </p>
-      <h2 ref={(el) => (element1.current = el)}>
+      <Intro element={element} />
+      <Expertises />
+    </div>
+  );
+}
+
+function Intro({ element }) {
+  return (
+    <div className="intro-container" ref={(el) => (element.current = el)}>
+      <p className="heading">WHAT I DO?</p>
+      <h2>
         HERE ARE SOME OF MY
         <br />
         EXPERTISE
       </h2>
-      {/* <div>{value}</div> */}
-      <Expertises />
     </div>
   );
 }

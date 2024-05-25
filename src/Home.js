@@ -69,7 +69,7 @@ function Section({ id, currentActive, children }) {
 function Intro({ handleSetCurrentActive, sentence }) {
   const [top, setTop] = useState(35);
   const [opacity, setOpacity] = useState(0);
-  const [word, isFinished] = useAutomateWrite(sentence, 5000, 5000);
+  const [word, isFinished] = useAutomateWrite(sentence, 100, 1500);
 
   useEffect(() => {
     if (isFinished) {

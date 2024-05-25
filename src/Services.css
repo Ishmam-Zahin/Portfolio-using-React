@@ -4,23 +4,21 @@
   padding-left: 30px;
   padding-right: 30px;
 }
+.services-container .intro-container {
+  transform: translate(-100px, 0);
+  opacity: 1;
+
+  transition: transform 1s, opacity 1s;
+}
 .services-container .heading {
   color: rgb(157, 157, 157);
   font-size: 0.8rem;
   letter-spacing: 5px;
   font-family: "Courier New", Courier, monospace, serif;
   margin-top: 150px;
-  transform: translate(-100px, 0);
-  opacity: 1;
-
-  transition: transform 1s, opacity 1s;
 }
 .services-container h2 {
   margin-top: 20px;
-  transform: translate(-100px, 0);
-  opacity: 1;
-
-  transition: transform 1s, opacity 1s;
 }
 .services-container .expertises-container {
   width: 100%;
