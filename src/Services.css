@@ -4,15 +4,23 @@
   padding-left: 30px;
   padding-right: 30px;
 }
-.services-container p:first-child {
+.services-container .heading {
   color: rgb(157, 157, 157);
   font-size: 0.8rem;
   letter-spacing: 5px;
   font-family: "Courier New", Courier, monospace, serif;
   margin-top: 150px;
+  transform: translate(-100px, 0);
+  opacity: 1;
+
+  transition: transform 1s, opacity 1s;
 }
 .services-container h2 {
   margin-top: 20px;
+  transform: translate(-100px, 0);
+  opacity: 1;
+
+  transition: transform 1s, opacity 1s;
 }
 .services-container .expertises-container {
   width: 100%;
@@ -28,8 +36,10 @@
   width: 300px;
   height: 350px;
   margin: 10px;
+  transform: translate(0, 100px);
+  opacity: 0;
 }
-.services-container .expertises-container .expertise-container p:first-child {
+.services-container .expertises-container .expertise-container .icon-container {
   font-size: 2.5rem;
   background-color: rgb(195, 207, 131);
   text-align: center;
@@ -42,7 +52,7 @@
 .services-container
   .expertises-container
   .expertise-container
-  p:first-child::after {
+  .icon-container::after {
   content: " ";
   display: block;
   width: 0;
@@ -56,7 +66,7 @@
 .services-container
   .expertises-container
   .expertise-container
-  p:first-child::before {
+  .icon-container::before {
   content: " ";
   display: block;
   width: 0;
@@ -91,4 +101,26 @@
   padding-left: 10px;
   padding-right: 10px;
   margin-top: 20px;
+}
+.services-container .expertises-container .expertise-0 {
+  transition: transform 1s, opacity 1s;
+}
+.services-container .expertises-container .expertise-1 {
+  transition: transform 1s, opacity 1s;
+  transition-delay: 100ms;
+}
+.services-container .expertises-container .expertise-2 {
+  transition: transform 1s, opacity 1s;
+  transition-delay: 200ms;
+}
+.services-container .expertises-container .expertise-3 {
+  transition: transform 1s, opacity 1s;
+}
+.services-container .expertises-container .expertise-4 {
+  transition: transform 1s, opacity 1s;
+  transition-delay: 100ms;
+}
+.services-container .expertises-container .expertise-5 {
+  transition: transform 1s, opacity 1s;
+  transition-delay: 200ms;
 }
