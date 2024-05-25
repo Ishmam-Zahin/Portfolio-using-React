@@ -5,6 +5,7 @@ export function useTest(numberArray) {
   const [value2, setValue2] = useState(0);
   const [value3, setValue3] = useState(0);
   const [value4, setValue4] = useState(0);
+  const [tmpState, setTmpState] = useState(0);
   const maxValue = useRef(numberArray[0]);
   const intervalArray = useRef(null);
   const counterArray = useRef(null);
@@ -40,18 +41,28 @@ export function useTest(numberArray) {
     [numberArray]
   );
 
-  useEffect(function () {
-    // console.log(
-    //   intervalArray,
-    //   counterArray,
-    //   globalValue.current,
-    //   maxValue.current
-    // );
-    if (globalValue.current < maxValue.current) {
-      globalValue.current++;
-    }
-    console.log("i am in effect");
-  }, []);
+  useEffect(
+    function () {
+      // console.log(
+      //   intervalArray,
+      //   counterArray,
+      //   globalValue.current,
+      //   maxValue.current
+      // );
+      let t = null;
+      if (tmpState < maxValue.current) {
+        t = setTimeout(() => {
+          setTmpState((cur) => cur + 1);
+        }, 10);
+      }
+      console.log("i am in effect", tmpState);
+
+      return function () {
+        if (!t) clearTimeout(t);
+      };
+    },
+    [tmpState]
+  );
 
   return [value1, value2, value3, value4];
 }
