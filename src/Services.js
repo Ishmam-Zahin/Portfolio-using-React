@@ -3,6 +3,7 @@ import "./Services.css";
 import { useCallback } from "react";
 import { useObserver } from "./useObserver";
 import { useAutoCounter } from "./useAutoCounter";
+import { useTest } from "./useTest";
 
 export default function Services() {
   const element = useRef(null);
@@ -197,17 +198,22 @@ function Expertise({ id, element, children }) {
 
 function Records() {
   const [start, setStart] = useState(false);
-  const [value1] = useAutoCounter(300, 10, 100, start);
-  const [value2] = useAutoCounter(200, 15, 100, start);
-  const [value3] = useAutoCounter(100, 40, 100, start);
-  const [value4] = useAutoCounter(50, 100, 100, start);
+  // const [value1] = useAutoCounter(300, 10, 100, start);
+  // const [value2] = useAutoCounter(200, 15, 100, start);
+  // const [value3] = useAutoCounter(100, 40, 100, start);
+  // const [value4] = useAutoCounter(50, 100, 100, start);
+  console.log(start);
   const element = useRef(null);
+
+  const tmp = useRef([354, 224, 76, 5]);
+
+  const [value1, value2, value3, value4] = useTest(tmp.current);
 
   const handleIntersect = useCallback(function (element) {
     setStart(true);
   }, []);
 
-  useObserver(null, 0.5, "0px", [element], handleIntersect);
+  // useObserver(null, 0.5, "0px", [element], handleIntersect);
 
   return (
     <div className="record-container" ref={(el) => (element.current = el)}>
