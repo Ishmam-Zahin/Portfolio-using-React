@@ -8,9 +8,11 @@ export function useObserver(
   onIntersect
 ) {
   const observer = useRef(null);
+  const isRendered = useRef(false);
 
   useEffect(
     function () {
+      isRendered.current = true;
       observer.current = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -28,6 +30,11 @@ export function useObserver(
       );
 
       elements.forEach((el) => observer.current.observe(el.current));
+
+      return function () {
+        observer.current.disconnect();
+        observer.current = null;
+      };
     },
     [root, threshold, rootMargin, elements, onIntersect]
   );

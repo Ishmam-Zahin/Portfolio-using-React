@@ -3,24 +3,29 @@ import { useEffect, useRef, useState } from "react";
 export function useAutomateWrite(sentence, time, stalltime = 5000) {
   const [word, setWord] = useState("");
   const [isFinished, setIsFinished] = useState(false);
-  const index = useRef(0);
+  const [index, setIndex] = useState(0);
+  const timer = useRef(null);
 
   useEffect(
     function () {
-      if (index.current < sentence.length) {
-        setTimeout(
+      if (index < sentence.length) {
+        timer.current = setTimeout(
           () => {
             setWord((cur) => {
-              const nword = cur + sentence[index.current];
-              index.current++;
+              const nword = cur + sentence[index];
               return nword;
             });
+            setIndex((cur) => cur + 1);
           },
-          index.current === 0 ? stalltime : time
+          index === 0 ? stalltime : time
         );
       } else {
         setIsFinished(true);
       }
+
+      return function () {
+        clearTimeout(timer.current);
+      };
     },
     [word, index, sentence, time, stalltime]
   );
