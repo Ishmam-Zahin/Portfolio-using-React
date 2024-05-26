@@ -7,18 +7,16 @@ export function useTest(numberArray, start) {
   const [value3, setValue3] = useState(0);
   const [value4, setValue4] = useState(0);
   const [globalCounter, setGlobalCounter] = useState(0);
-  // const tmp = useRef[setValue1, setValue2, setValue3, setValue4]
 
   useEffect(
     function () {
       if (start) {
         maxValue.current = numberArray[0];
-        // console.log(globalCounter);
         let timer = null;
         if (globalCounter < maxValue.current) {
           timer = setTimeout(() => {
             setGlobalCounter((cur) => cur + 1);
-          }, 10);
+          }, 1);
         }
 
         return function () {
