@@ -1,13 +1,78 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export function useTest() {
-  const [testState, setTestStae] = useState(false);
+export function useTest(numberArray, start) {
+  const maxValue = useRef(0);
+  const [value1, setValue1] = useState(0);
+  const [value2, setValue2] = useState(0);
+  const [value3, setValue3] = useState(0);
+  const [value4, setValue4] = useState(0);
+  const [globalCounter, setGlobalCounter] = useState(0);
+  // const tmp = useRef[setValue1, setValue2, setValue3, setValue4]
 
-  console.log("i am at useTest func");
+  useEffect(
+    function () {
+      if (start) {
+        maxValue.current = numberArray[0];
+        // console.log(globalCounter);
+        let timer = null;
+        if (globalCounter < maxValue.current) {
+          timer = setTimeout(() => {
+            setGlobalCounter((cur) => cur + 1);
+          }, 10);
+        }
 
-  useEffect(function () {
-    console.log("i am in useEffect");
-  }, []);
+        return function () {
+          clearTimeout(timer);
+        };
+      }
+    },
+    [globalCounter, numberArray, start]
+  );
 
-  return [testState];
+  useEffect(
+    function () {
+      if (globalCounter >= 1) {
+        numberArray.forEach((v, i) => {
+          let fValue = Math.floor(maxValue.current / v);
+          const range = v - (maxValue.current % v);
+          if (globalCounter <= range * fValue) {
+            if (globalCounter % fValue === 0) {
+              if (i === 0) {
+                setValue1((cur) => cur + 1);
+              }
+              if (i === 1) {
+                setValue2((cur) => cur + 1);
+              }
+              if (i === 2) {
+                setValue3((cur) => cur + 1);
+              }
+              if (i === 3) {
+                setValue4((cur) => cur + 1);
+              }
+            }
+          } else {
+            const tmp = fValue * range;
+            fValue++;
+            if ((globalCounter - tmp) % fValue === 0) {
+              if (i === 0) {
+                setValue1((cur) => cur + 1);
+              }
+              if (i === 1) {
+                setValue2((cur) => cur + 1);
+              }
+              if (i === 2) {
+                setValue3((cur) => cur + 1);
+              }
+              if (i === 3) {
+                setValue4((cur) => cur + 1);
+              }
+            }
+          }
+        });
+      }
+    },
+    [globalCounter, numberArray]
+  );
+
+  return [value1, value2, value3, value4];
 }
