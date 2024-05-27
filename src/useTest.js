@@ -1,67 +1,75 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useTest(numberArray) {
+export function useTest(numberArray, start) {
+  const maxValue = useRef(0);
   const [value1, setValue1] = useState(0);
   const [value2, setValue2] = useState(0);
   const [value3, setValue3] = useState(0);
   const [value4, setValue4] = useState(0);
-  const [tmpState, setTmpState] = useState(0);
-  const maxValue = useRef(numberArray[0]);
-  const intervalArray = useRef(null);
-  const counterArray = useRef(null);
-  const timer = useRef(null);
-  const globalValue = useRef(0);
+  const [globalCounter, setGlobalCounter] = useState(0);
 
   useEffect(
     function () {
-      const tmp1 = numberArray.map((value, i) => {
-        if (maxValue.current % value === 0) {
-          const x = maxValue.current / value;
-          return [x, x];
-        } else {
-          const x = Math.floor(maxValue.current / value);
-          const y = Math.ceil(maxValue.current / value);
-          return [x, y];
+      if (start) {
+        maxValue.current = numberArray[0];
+        let timer = null;
+        if (globalCounter < maxValue.current) {
+          timer = setTimeout(() => {
+            setGlobalCounter((cur) => cur + 1);
+          }, 1);
         }
-      });
-      intervalArray.current = tmp1;
 
-      const tmp2 = tmp1.map(([value1, value2], i) => {
-        const x = value2 * numberArray[i] - maxValue.current;
-        const y = numberArray[i] - x;
-
-        return [x, y];
-      });
-      counterArray.current = tmp2;
-
-      return function () {
-        console.log("clean up");
-      };
+        return function () {
+          clearTimeout(timer);
+        };
+      }
     },
-    [numberArray]
+    [globalCounter, numberArray, start]
   );
 
   useEffect(
     function () {
-      // console.log(
-      //   intervalArray,
-      //   counterArray,
-      //   globalValue.current,
-      //   maxValue.current
-      // );
-      let t = null;
-      if (tmpState < maxValue.current) {
-        t = setTimeout(() => {
-          setTmpState((cur) => cur + 1);
-        }, 10);
+      if (globalCounter >= 1) {
+        numberArray.forEach((v, i) => {
+          let fValue = Math.floor(maxValue.current / v);
+          const range = v - (maxValue.current % v);
+          if (globalCounter <= range * fValue) {
+            if (globalCounter % fValue === 0) {
+              if (i === 0) {
+                setValue1((cur) => cur + 1);
+              }
+              if (i === 1) {
+                setValue2((cur) => cur + 1);
+              }
+              if (i === 2) {
+                setValue3((cur) => cur + 1);
+              }
+              if (i === 3) {
+                setValue4((cur) => cur + 1);
+              }
+            }
+          } else {
+            const tmp = fValue * range;
+            fValue++;
+            if ((globalCounter - tmp) % fValue === 0) {
+              if (i === 0) {
+                setValue1((cur) => cur + 1);
+              }
+              if (i === 1) {
+                setValue2((cur) => cur + 1);
+              }
+              if (i === 2) {
+                setValue3((cur) => cur + 1);
+              }
+              if (i === 3) {
+                setValue4((cur) => cur + 1);
+              }
+            }
+          }
+        });
       }
-      console.log("i am in effect", tmpState);
-
-      return function () {
-        if (!t) clearTimeout(t);
-      };
     },
-    [tmpState]
+    [globalCounter, numberArray]
   );
 
   return [value1, value2, value3, value4];

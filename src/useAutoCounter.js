@@ -1,28 +1,77 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useAutoCounter(number, time, stallTime, start = false) {
-  const [value, setValue] = useState(0);
-  const timer = useRef(null);
+export function useAutoCounter(numberArray, start) {
+  const maxValue = useRef(0);
+  const [value1, setValue1] = useState(0);
+  const [value2, setValue2] = useState(0);
+  const [value3, setValue3] = useState(0);
+  const [value4, setValue4] = useState(0);
+  const [globalCounter, setGlobalCounter] = useState(0);
 
   useEffect(
     function () {
+      console.log("i am effect");
       if (start) {
-        if (value < number) {
-          timer.current = setTimeout(
-            function () {
-              setValue((cur) => cur + 1);
-            },
-            value === 0 ? stallTime : time
-          );
+        maxValue.current = numberArray[0];
+        let timer = null;
+        if (globalCounter < maxValue.current) {
+          timer = setTimeout(() => {
+            setGlobalCounter((cur) => cur + 1);
+          }, 1);
         }
-      }
 
-      return function () {
-        if (!timer) clearTimeout(timer.current);
-      };
+        return function () {
+          clearTimeout(timer);
+        };
+      }
     },
-    [value, time, number, stallTime, start]
+    [globalCounter, numberArray, start]
   );
 
-  return [value];
+  useEffect(
+    function () {
+      if (globalCounter >= 1) {
+        numberArray.forEach((v, i) => {
+          let fValue = Math.floor(maxValue.current / v);
+          const range = v - (maxValue.current % v);
+          if (globalCounter <= range * fValue) {
+            if (globalCounter % fValue === 0) {
+              if (i === 0) {
+                setValue1((cur) => cur + 1);
+              }
+              if (i === 1) {
+                setValue2((cur) => cur + 1);
+              }
+              if (i === 2) {
+                setValue3((cur) => cur + 1);
+              }
+              if (i === 3) {
+                setValue4((cur) => cur + 1);
+              }
+            }
+          } else {
+            const tmp = fValue * range;
+            fValue++;
+            if ((globalCounter - tmp) % fValue === 0) {
+              if (i === 0) {
+                setValue1((cur) => cur + 1);
+              }
+              if (i === 1) {
+                setValue2((cur) => cur + 1);
+              }
+              if (i === 2) {
+                setValue3((cur) => cur + 1);
+              }
+              if (i === 3) {
+                setValue4((cur) => cur + 1);
+              }
+            }
+          }
+        });
+      }
+    },
+    [globalCounter, numberArray]
+  );
+
+  return [value1, value2, value3, value4];
 }
