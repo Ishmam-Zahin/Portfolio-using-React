@@ -10,6 +10,7 @@ export function useAutoCounter(numberArray, start) {
 
   useEffect(
     function () {
+      console.log("i am effect");
       if (start) {
         maxValue.current = numberArray[0];
         let timer = null;

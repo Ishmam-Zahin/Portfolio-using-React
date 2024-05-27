@@ -193,7 +193,6 @@ function Expertise({ id, element, children }) {
     </div>
   );
 }
-
 function Records() {
   const [start, setStart] = useState(false);
 
@@ -208,6 +207,8 @@ function Records() {
   useObserver(null, 0.5, "0px", [element], handleIntersect);
 
   const [value1, value2, value3, value4] = useAutoCounter(tmp.current, start);
+
+  // console.log(value1, value2, value3, value4);
 
   return (
     <div className="record-container" ref={(el) => (element.current = el)}>
