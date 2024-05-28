@@ -193,13 +193,12 @@ function Expertise({ id, element, children }) {
     </div>
   );
 }
-
 function Records() {
   const [start, setStart] = useState(false);
 
   const element = useRef(null);
 
-  const tmp = useRef([556, 100, 200, 10]);
+  const tmp = useRef([100, 10, 5, 2]);
 
   const handleIntersect = useCallback(function (element) {
     setStart(true);
