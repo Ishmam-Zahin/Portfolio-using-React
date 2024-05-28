@@ -198,7 +198,7 @@ function Records() {
 
   const element = useRef(null);
 
-  const tmp = useRef([556, 100, 200, 10]);
+  const tmp = useRef([100, 10, 5, 2]);
 
   const handleIntersect = useCallback(function (element) {
     setStart(true);
@@ -207,8 +207,6 @@ function Records() {
   useObserver(null, 0.5, "0px", [element], handleIntersect);
 
   const [value1, value2, value3, value4] = useAutoCounter(tmp.current, start);
-
-  // console.log(value1, value2, value3, value4);
 
   return (
     <div className="record-container" ref={(el) => (element.current = el)}>
